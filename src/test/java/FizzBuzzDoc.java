@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,13 +11,14 @@ import java.util.stream.IntStream;
 class FizzBuzzDoc {
 
     public StringBuffer buffer = new StringBuffer();
+    private final Path TEST_PATH = Paths.get("src", "test", "java");
 
     public void generateDoc() throws IOException {
 
         writeDoc();
 
-        final Path filePath = Paths.get("fizzbuzz.adoc");
-        try (BufferedWriter docFile = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
+        final Path filePath = TEST_PATH.resolve(Paths.get("FizzBuzzDoc.generateDoc.adoc"));
+        try (BufferedWriter docFile = new BufferedWriter(new FileWriter(filePath.toString()))) {
             docFile.write(buffer.toString());
         }
     }
