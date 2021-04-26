@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
@@ -9,13 +8,19 @@ import java.util.stream.IntStream;
 
 class FizzBuzzDoc {
 
-    public final Writer writer;
+    public StringBuffer buffer = new StringBuffer();
 
-    FizzBuzzDoc(Writer writer) {
-        this.writer = writer;
+    public void generateDoc() throws IOException {
+
+        writeDoc();
+
+        final Path filePath = Paths.get("fizzbuzz.adoc");
+        try (BufferedWriter docFile = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
+            docFile.write(buffer.toString());
+        }
     }
 
-    private void generateDoc() throws IOException {
+    private void writeDoc() throws IOException {
 
         write("= FizzBuzz");
         write("");
@@ -68,13 +73,11 @@ class FizzBuzzDoc {
     }
 
     private void write(String text) throws IOException {
-        writer.write(text + "\n");
+        buffer.append(text + "\n");
     }
 
     public static void main(String... args) throws IOException {
-        final Path filePath = Paths.get("fizzbuzz.adoc");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
-            new FizzBuzzDoc(writer).generateDoc();
-        }
+        new FizzBuzzDoc().generateDoc();
     }
+
 }
