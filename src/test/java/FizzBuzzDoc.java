@@ -1,3 +1,4 @@
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedWriter;
@@ -13,6 +14,7 @@ class FizzBuzzDoc {
     public StringBuffer buffer = new StringBuffer();
     private final Path TEST_PATH = Paths.get("src", "test", "java");
 
+    @Test
     public void generateDoc() throws IOException {
 
         writeDoc();
@@ -21,6 +23,8 @@ class FizzBuzzDoc {
         try (BufferedWriter docFile = new BufferedWriter(new FileWriter(filePath.toString()))) {
             docFile.write(buffer.toString());
         }
+
+        Approvals.verify(filePath.toFile());
     }
 
     private void writeDoc() throws IOException {
@@ -78,9 +82,5 @@ class FizzBuzzDoc {
     private void write(String text) throws IOException {
         buffer.append(text + "\n");
     }
-
-    public static void main(String... args) throws IOException {
-        new FizzBuzzDoc().generateDoc();
-    }
-
+    
 }
