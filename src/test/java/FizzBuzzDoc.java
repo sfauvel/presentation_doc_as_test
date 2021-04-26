@@ -1,22 +1,17 @@
 import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class FizzBuzzDoc {
 
     public StringBuffer buffer = new StringBuffer();
-    private final Path TEST_PATH = Paths.get("src", "test", "java");
 
     @Test
     public void generateDoc() throws IOException {
@@ -27,24 +22,9 @@ class FizzBuzzDoc {
 
     @AfterEach
     public void verifyAfterEach(TestInfo testInfo) {
-        final ApprovalNamer approvalNamer = new ApprovalNamer() {
-
-            @Override
-            public String getApprovalName() {
-                return String.format("%s.%s",
-                        testInfo.getTestClass().map(Class::getSimpleName).get(),
-                        testInfo.getTestMethod().map(Method::getName).get());
-            }
-
-            @Override
-            public String getSourceFilePath() {
-                return TEST_PATH.toString() + File.separator;
-            }
-        };
-
-        Approvals.verify(new ApprovalTextWriter(buffer.toString(), "adoc"),
-                approvalNamer,
-                Approvals.getReporter());
+        Approvals.verify(new FileApprover(
+                new ApprovalTextWriter(buffer.toString(), "adoc"),
+                new TestInfoNamer(testInfo)));
 
     }
 
