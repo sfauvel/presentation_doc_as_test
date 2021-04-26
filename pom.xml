@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <junit.version>5.4.1</junit.version>
+        <approvaltests.version>4.0.2</approvaltests.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
     </properties>
 
@@ -39,6 +40,12 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+            <version>${approvaltests.version}</version>
         </dependency>
     </dependencies>
 </project>
