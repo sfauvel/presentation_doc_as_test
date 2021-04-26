@@ -1,0 +1,8 @@
+[#demo_FizzBuzzDoc_return_buzz_when_divisible_by_five]
+= Return buzz when divisible by five
+
+When number is divisible by five, returns Buzz.
+
+FizzBuzz(5) = Buzz +
+ FizzBuzz(25) = Buzz +
+ 

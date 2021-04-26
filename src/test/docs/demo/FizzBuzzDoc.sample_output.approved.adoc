@@ -1,4 +1,5 @@
-== Sample output
+[#demo_FizzBuzzDoc_sample_output]
+= Sample output
 
 1 +
 2 +
@@ -19,5 +20,4 @@ FizzBuzz +
 17 +
 Fizz +
 19 +
-Buzz
-... etc up to 100
+Buzz... etc up to 100

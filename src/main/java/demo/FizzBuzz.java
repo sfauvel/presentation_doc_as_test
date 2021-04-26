@@ -1,3 +1,5 @@
+package demo;
+
 public class FizzBuzz {
     public static String get(int i) {
         String result = "";
