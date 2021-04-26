@@ -13,13 +13,6 @@ class FizzBuzzDoc {
 
     public StringBuffer buffer = new StringBuffer();
 
-    @Test
-    public void generateDoc() throws IOException {
-
-        writeDoc();
-
-    }
-
     @AfterEach
     public void verifyAfterEach(TestInfo testInfo) {
         Approvals.verify(new FileApprover(
@@ -28,7 +21,8 @@ class FizzBuzzDoc {
 
     }
 
-    private void writeDoc() throws IOException {
+    @Test
+    public void writeDoc() throws IOException {
 
         write("= FizzBuzz");
         write("");
@@ -41,19 +35,20 @@ class FizzBuzzDoc {
         write("http://codingdojo.org/kata/FizzBuzz/");
         write("");
 
-        sample_output();
-
-        return_given_value();
-
-        return_fizz_when_divisible_by_three();
-
-        return_buzz_when_divisible_by_five();
-
-        return_fizzbuzz_when_divisible_by_three_and_five();
+        write("include::FizzBuzzDoc.sample_output.approved.adoc[]");
+        write("");
+        write("include::FizzBuzzDoc.return_given_value.approved.adoc[]");
+        write("");
+        write("include::FizzBuzzDoc.return_fizz_when_divisible_by_three.approved.adoc[]");
+        write("");
+        write("include::FizzBuzzDoc.return_buzz_when_divisible_by_five.approved.adoc[]");
+        write("");
+        write("include::FizzBuzzDoc.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[]");
 
     }
 
-    private void return_fizzbuzz_when_divisible_by_three_and_five() throws IOException {
+    @Test
+    public void return_fizzbuzz_when_divisible_by_three_and_five() throws IOException {
         write("== Return fizzbuzz when divisible by three and five");
         write("When number is divisible by three and five, returns FizzBuzz.");
         write("");
@@ -61,7 +56,8 @@ class FizzBuzzDoc {
         callFizzBuzzWith(60);
     }
 
-    private void return_buzz_when_divisible_by_five() throws IOException {
+    @Test
+    public void return_buzz_when_divisible_by_five() throws IOException {
         write("== Return buzz when divisible by five");
         write("When number is divisible by five, returns Buzz.");
         write("");
@@ -69,7 +65,8 @@ class FizzBuzzDoc {
         callFizzBuzzWith(25);
     }
 
-    private void return_fizz_when_divisible_by_three() throws IOException {
+    @Test
+    public void return_fizz_when_divisible_by_three() throws IOException {
         write("== Return fizz when divisible by three");
         write("When number is divisible by three, returns Fizz.");
         write("");
@@ -77,7 +74,8 @@ class FizzBuzzDoc {
         callFizzBuzzWith(9);
     }
 
-    private void return_given_value() throws IOException {
+    @Test
+    public void return_given_value() throws IOException {
         write("== Return given number");
         write("When number is not divisible by five or three, returns the number.");
         write("");
@@ -87,7 +85,8 @@ class FizzBuzzDoc {
         callFizzBuzzWith(22);
     }
 
-    private void sample_output() throws IOException {
+    @Test
+    public void sample_output() throws IOException {
         write("== Sample output");
         write("");
         write(IntStream.rangeClosed(1, 20)
