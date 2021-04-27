@@ -1,0 +1,9 @@
+[#demo_FizzBuzzDoc_fizzbuzz_usage]
+= Fizzbuzz usage
+
+With the following code, result is `2`
+[source,java,indent=0]
+----
+        final String result = FizzBuzz.get(2);
+
+----

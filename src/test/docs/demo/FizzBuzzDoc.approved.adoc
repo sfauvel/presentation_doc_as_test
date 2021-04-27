@@ -17,3 +17,7 @@ include::FizzBuzzDoc.return_fizz_when_divisible_by_three.approved.adoc[leveloffs
 include::FizzBuzzDoc.return_buzz_when_divisible_by_five.approved.adoc[leveloffset=+1]
 
 include::FizzBuzzDoc.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzDoc.fizzbuzz_usage.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzDoc.values_for_a_result.approved.adoc[leveloffset=+1]
